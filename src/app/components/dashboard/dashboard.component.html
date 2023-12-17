@@ -1,0 +1,71 @@
+<div class="container">
+  <div *ngIf="userData && userData.length > 0; ">
+    <ng-container *ngIf="userData[0]?.courses">
+      <div class="banner">
+        <div class="heading">
+          <h3>WelCome back {{ userData[0]?.fullName }}!</h3>
+          <p>Email: <a [href]="userData[0]?.email">{{ userData[0]?.email }}</a></p>
+          <br>
+          <p>You've learned 80% of your goal this week! <br>
+            keep it up and improve your results!
+          </p>
+        </div>
+        <div class="banner-image">
+          <img src="../../../assets/image/heading-image.jpg" alt="">
+        </div>
+      </div>
+      <div>Courses:
+        <ul>
+          <li *ngFor="let course of userData[0]?.courses | keyvalue">
+            {{ course.key }}: <ngb-progressbar class="mb-3" type="info"
+              [value]="parseValue(course.value)"></ngb-progressbar>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="dashboard">
+    <div class="time-spent">
+      <h2>Time Spent Data</h2>
+      <ul>
+        <li *ngFor="let pair of timeSpentData.days | keyvalue ">
+          {{ pair.key }}:
+          <!-- is code ko chala tha jo chal nhi rha
+            <ul>
+          <li *ngFor="let item of [pair.value] | keyvalue ">
+            {{item.key}}
+            <ngb-progressbar class="mb-3" type="success" [value]="parsePercentage(item.value)"></ngb-progressbar> 
+          </li>
+        </ul> -->
+          <ul>
+            <li *ngFor="let item of timeSpentData.days.monday | keyvalue ">
+              {{item.key}}
+              <ngb-progressbar class="mb-3" type="danger" [value]="parsePercentage(item.value)"></ngb-progressbar>
+            </li>
+          </ul>
+        </li>
+
+        <p>Average Percentages:</p>
+        <li *ngFor="let pair of timeSpentData.averagePercentages | keyvalue">
+          {{ pair.key }}: <ngb-progressbar class="mb-3" type="success"
+            [value]="parsePercentage(pair.value)"></ngb-progressbar>
+        </li>
+      </ul>
+    </div>
+
+    <div class="latest-results">
+      <h2>Latest Results</h2>
+      <ul *ngIf="latestResults">
+        <li>{{ latestResults[0].quizTitle }} <ngb-progressbar class="mb-3" type="info"
+            [value]="parsePercentage(latestResults[0].score)"></ngb-progressbar> </li>
+        <li>{{ latestResults[1].quizTitle }} <ngb-progressbar class="mb-3" type="danger"
+            [value]="parsePercentage(latestResults[1].score)"></ngb-progressbar></li>
+        <li>{{ latestResults[2].quizTitle }} <ngb-progressbar class="mb-3" type="primary"
+            [value]="parsePercentage(latestResults[2].score)"></ngb-progressbar></li>
+        <li>{{ latestResults[3].quizTitle }} <ngb-progressbar class="mb-3" type="warning"
+            [value]="parsePercentage(latestResults[3].score)"></ngb-progressbar></li>
+      </ul>
+    </div>
+  </div>
+</div>

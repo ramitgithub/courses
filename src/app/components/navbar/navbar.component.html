@@ -1,0 +1,30 @@
+<ng-template #content let-offcanvas>
+	<div class="offcanvas-header">
+		<h4 class="offcanvas-title" id="offcanvas-basic-title">Profile update</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	</div>
+	<div class="offcanvas-body">
+		<nav>
+            <ul>
+                <li><a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/">Dashboard</a></li>
+                <li><a routerLinkActive="active" routerLink="/classes">classes</a></li>
+                <li><a routerLinkActive="active" routerLink="/resources">resources</a></li>
+                <li><a routerLinkActive="active" routerLink="/learning-plan">learning-plan</a></li>
+                <li><a routerLinkActive="active" routerLink="/chat">chat</a></li>
+                <li><a routerLinkActive="active" routerLink="/settings">settings</a></li>
+            </ul>
+        </nav>
+	</div>
+</ng-template>
+<div class="header">
+    <div class="logo">
+        <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Logo</button>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="search">
+    </div>
+</div>
+
+
+
+
